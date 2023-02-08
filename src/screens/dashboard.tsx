@@ -1,11 +1,13 @@
 import Categories from '../components/categories';
 import Products from '../components/products';
 
-export const Dashboard = (props: any): JSX.Element => {
+const Dashboard = (): JSX.Element => {
   return (
     <>
-      <Categories></Categories>
-      <Products {...props}></Products>
+      <Categories />
+      <Products />
     </>
   );
 };
+
+export default Dashboard;

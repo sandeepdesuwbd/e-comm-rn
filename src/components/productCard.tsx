@@ -1,6 +1,8 @@
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
+
+import ImageComponent from './imagesComponent';
+
 import {addToCart, addProduct} from '../../store/product';
-import Images from './images';
 import {Product} from '../modals/product';
 import {useAppDispatch} from '../../store/hooks';
 
@@ -24,7 +26,7 @@ const ProductCard = ({product, navigate}: IProps): JSX.Element => {
         dispatch(addProduct(product));
         navigate('ProductDetails');
       }}>
-      <Images src={thumbnail}></Images>
+      <ImageComponent src={thumbnail}></ImageComponent>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.price}>${price}</Text>
       <View style={styles.details}>

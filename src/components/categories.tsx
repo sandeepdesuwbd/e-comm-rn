@@ -42,6 +42,7 @@ const Categories = () => {
           data={categories}
           renderItem={renderItem}
           horizontal={true}
+          showsHorizontalScrollIndicator={false}
           keyExtractor={item => `item_${item}`}
         />
       </View>
