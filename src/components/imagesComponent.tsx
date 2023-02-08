@@ -6,7 +6,7 @@ interface IProps {
 }
 
 const ImageComponent = ({src, style}: IProps) => {
-  return <Image source={{uri: src}} style={[styles.productImage, style]} />;
+  return <Image source={{uri: src}} style={[styles.productImage, style]} resizeMode='contain'/>;
 };
 
 const styles = StyleSheet.create({
