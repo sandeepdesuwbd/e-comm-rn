@@ -1,12 +1,14 @@
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-import {useAppSelector} from '../../store/hooks';
+import {useAppDispatch, useAppSelector} from '../../store/hooks';
 import {ImageSlider} from './imageSlider';
+import {addToCart} from '../../store/product';
 
 export const ProductDetailsComponent = (): JSX.Element => {
   const product = useAppSelector(state => state.product.selectedProduct);
   const navigation = useNavigation();
+  const dispatch = useAppDispatch();
 
   return (
     <View style={styles.container}>
@@ -46,14 +48,15 @@ export const ProductDetailsComponent = (): JSX.Element => {
         <TouchableOpacity
           style={[styles.button, styles.buyNow]}
           onPress={() => {
-            navigation.navigate('BuyNow');
+            dispatch(addToCart(product));
+            navigation.navigate('AddToCart');
           }}>
           <Text>BuyNow</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.button, styles.addToCart]}
           onPress={() => {
-            navigation.navigate('AddToCart');
+            dispatch(addToCart(product));
           }}>
           <Text>Add to cart</Text>
         </TouchableOpacity>

@@ -16,7 +16,7 @@ import ProductDetails from './src/screens/productDetails';
 import Header from './src/components/header';
 import ProductHeader from './src/components/productHeader';
 import BuyNow from './src/screens/buyNow';
-import AddToCart from './src/screens/addToCart';
+import CartScreen from './src/screens/Cart';
 
 const Stack = createNativeStackNavigator();
 
@@ -29,7 +29,7 @@ function App(): JSX.Element {
             name="Home"
             component={Dashboard}
             options={{
-              headerTitle: () => <Header/>,
+              headerTitle: () => <Header />,
             }}
           />
           <Stack.Screen
@@ -37,12 +37,16 @@ function App(): JSX.Element {
             component={ProductDetails}
             options={{headerTitle: () => <ProductHeader />}}
           />
-          <Stack.Screen name="BuyNow" component={BuyNow} />
           <Stack.Screen
             name="AddToCart"
-            component={AddToCart}
+            component={CartScreen}
             options={{title: 'Cart'}}
           />
+
+          <Stack.Screen name="BuyNow" component={BuyNow} options={{
+              headerTitle: () => <Header />,
+              headerBackVisible: false
+            }}/>
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
