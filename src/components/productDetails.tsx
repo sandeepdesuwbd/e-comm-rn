@@ -16,7 +16,7 @@ export const ProductDetailsComponent = (): JSX.Element => {
       <View style={styles.detailsContainer}>
         <View style={styles.mainContainer}>
           <Text>Name: </Text>
-          <Text style={styles.bold}>{product.title}</Text>
+          <Text style={[styles.bold, styles.startWithUppercase]}>{product.title}</Text>
         </View>
         <View style={styles.mainContainer}>
           <Text>Description: {product.description}</Text>

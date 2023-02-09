@@ -6,7 +6,7 @@ const ProductHeader = (): JSX.Element => {
   const title = useAppSelector(state => state.product.selectedProduct.title);
   return (
     <View style={styles.container}>
-      <Text>{title}</Text>
+      <Text style={{textTransform: 'capitalize',}}>{title}</Text>
       <CartCount />
     </View>
   );

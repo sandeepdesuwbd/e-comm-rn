@@ -21,8 +21,10 @@ const CartScreen = (): JSX.Element => {
     return (
       <View style={styles.emptyCart}>
         <Text> Your cart is empty</Text>
-        <TouchableOpacity style={[styles.button, styles.HomeButton]} onPress={()=>navigation.navigate('Home')}>
-            <Text>Home</Text>
+        <TouchableOpacity
+          style={[styles.button, styles.HomeButton]}
+          onPress={() => navigation.navigate('Home')}>
+          <Text>Home</Text>
         </TouchableOpacity>
       </View>
     );
@@ -32,9 +34,12 @@ const CartScreen = (): JSX.Element => {
   const priceDetails = cart.map((item, index) => {
     return (
       <View key={`priceDetails_${index}`} style={styles.payment}>
-        <Text style={{width: '30%'}}>
-          {index + 1} . {item.product.title}
-        </Text>
+        <View style={{width: 110, flexDirection: 'row'}}>
+          <Text>{index + 1} .</Text>
+          <Text style={{textTransform: 'capitalize'}}>
+            {item.product.title}
+          </Text>
+        </View>
         <Text> QTY : {item.count}</Text>
         <Text>${item.product.price * item.count}</Text>
       </View>
@@ -45,7 +50,9 @@ const CartScreen = (): JSX.Element => {
       <View key={`cart_${index}`} style={styles.cartCard}>
         <ImageComponent src={item.product.images[0]} />
         <View style={styles.itemDetails}>
-          <Text style={styles.bold}>{item.product.title}</Text>
+          <Text style={[styles.bold, {textTransform: 'capitalize'}]}>
+            {item.product.title}
+          </Text>
           <Text style={styles.bold}>Price: ${item.product.price}</Text>
           <View style={styles.count}>
             <Text style={styles.bold}>Count: </Text>
@@ -172,10 +179,10 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 20,
   },
-  HomeButton:{
-    backgroundColor: "white",
-    marginTop: 20
-  }
+  HomeButton: {
+    backgroundColor: 'white',
+    marginTop: 20,
+  },
 });
 
 export default CartScreen;

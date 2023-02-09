@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 12,
     margin: 3,
+    textTransform: 'capitalize',
   },
   price: {
     fontSize: 12,
