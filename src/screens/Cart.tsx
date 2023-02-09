@@ -30,8 +30,17 @@ const CartScreen = (): JSX.Element => {
     );
   }
   const dispatch = useAppDispatch();
-  const totalAmount = cart.reduce((a, b) => a + b.count * b.product.price, 0);
+  const totalAmount = cart.reduce((a, b) => {
+    const discountPrice =
+      b.product.price * (b.product.discountPercentage / 100);
+    const finalPrice = b.product.price - discountPrice;
+
+    return a + b.count * finalPrice;
+  }, 0);
   const priceDetails = cart.map((item, index) => {
+    const discountPrice =
+      item.product.price * (item.product.discountPercentage / 100);
+    const finalPrice = item.product.price - discountPrice;
     return (
       <View key={`priceDetails_${index}`} style={styles.payment}>
         <View style={{width: 110, flexDirection: 'row'}}>
@@ -41,11 +50,14 @@ const CartScreen = (): JSX.Element => {
           </Text>
         </View>
         <Text> QTY : {item.count}</Text>
-        <Text>${item.product.price * item.count}</Text>
+        <Text>${(finalPrice * item.count).toFixed(2)}</Text>
       </View>
     );
   });
   const items = cart.map((item, index) => {
+    const discountPrice =
+      item.product.price * (item.product.discountPercentage / 100);
+    const finalPrice = item.product.price - discountPrice;
     return (
       <View key={`cart_${index}`} style={styles.cartCard}>
         <ImageComponent src={item.product.images[0]} />
@@ -53,7 +65,13 @@ const CartScreen = (): JSX.Element => {
           <Text style={[styles.bold, {textTransform: 'capitalize'}]}>
             {item.product.title}
           </Text>
-          <Text style={styles.bold}>Price: ${item.product.price}</Text>
+          <View style={{flexDirection: 'row'}}>
+            <Text style={[styles.bold, styles.strikeOut, {marginRight: 10}]}>
+              Price: ${item.product.price}
+            </Text>
+            <Text style={[styles.bold, {color: 'red'}]}>{item.product.discountPercentage}%</Text>
+          </View>
+          <Text style={styles.bold}>Your price: ${finalPrice.toFixed(2)}</Text>
           <View style={styles.count}>
             <Text style={styles.bold}>Count: </Text>
             <TouchableOpacity
@@ -82,7 +100,7 @@ const CartScreen = (): JSX.Element => {
         <View style={styles.hr}></View>
         <View style={styles.payment}>
           <Text>Total</Text>
-          <Text>${totalAmount}</Text>
+          <Text>${totalAmount.toFixed(2)}</Text>
         </View>
       </View>
       <View>
@@ -182,6 +200,9 @@ const styles = StyleSheet.create({
   HomeButton: {
     backgroundColor: 'white',
     marginTop: 20,
+  },
+  strikeOut: {
+    textDecorationLine: 'line-through',
   },
 });
 
