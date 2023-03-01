@@ -8,7 +8,7 @@ export default function Header(): JSX.Element {
     <View style={styles.container}>
       <TouchableOpacity style={styles.mainContainer} onPress={()=>navigation.navigate('Home')}>
         <Image
-          source={require('../../assets/app-icons/lady-icon-3.jpg')}
+          source={{uri: require('../../assets/app-icons/lady-icon-3.jpg')}}
           style={styles.profileImage}
         />
         <Text style={styles.name}> Jenny </Text>

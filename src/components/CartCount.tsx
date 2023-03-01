@@ -14,7 +14,7 @@ export const CartCount = (): JSX.Element => {
         navigation.navigate('AddToCart');
       }}>
       <Image
-        source={require('../../assets/app-icons/add-to-cart.jpeg')}
+        source={{uri:require('../../assets/app-icons/add-to-cart.jpeg')}}
         style={styles.cartImage}
       />
       <Text style={styles.cartCount}>{length}</Text>
